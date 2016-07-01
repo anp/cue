@@ -1,0 +1,18 @@
+[package]
+name = "cue"
+version = "0.1.0"
+authors = ["Adam Perry <adam.n.perry@gmail.com>"]
+license = "MIT"
+documentation = "https://dikaiosune.github.io/cue"
+repository = "https://github.com/dikaiosune/cue"
+readme = "README.md"
+keywords = ["pool", "pipeline", "work", "steal", "parallel"]
+description = "Simple parallel streaming pipeline for CPU/RAM expensive computations."
+
+[dependencies]
+crossbeam = "0.2"
+log = { version = "0.3", optional = true }
+syncbox = "0.2"
+
+[features]
+default = ["log"]
