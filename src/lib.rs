@@ -1,3 +1,26 @@
+//! Run a computation in parallel, and register a "joiner" closure to aggregate/serialize the
+//! results. Example:
+//!
+//! ```
+//! use std::collections::BTreeMap;
+//! use cue::pipeline;
+//!
+//! let mut results = BTreeMap::new();
+//!
+//! pipeline("test123",      // name of the pipeline for logging
+//!          4,              // number of worker threads
+//!          (0..100_000),   // iterator with work items
+//!          |n| (n, n * 5), // computation to apply in parallel to work items
+//!          |r| {           // aggregation to apply to work results
+//!              results.insert(r.0, r.1);
+//!          }
+//! );
+//!
+//! for i in 0..100 {
+//!     assert!(Some(&(i * 5)) == results.get(&i));
+//! }
+//! ```
+
 #[cfg(feature="log")]
 #[macro_use]
 extern crate log;
